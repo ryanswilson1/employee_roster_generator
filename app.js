@@ -31,10 +31,10 @@ function managerResponse() {
         },
         {
             type: "input",
-            name: "officeNumber",
+            name: "phoneNumber",
             message: "Enter manager telephone number."
         }
-    ]).then(answers => {
+    ]).then(responses => {
         let { name, id, email, phoneNumber } = responses;
         let manager = new Manager(name, id, email, phoneNumber);
 
@@ -52,8 +52,8 @@ function generateTeam() {
             message: "Add new team members?",
             choices: ["Add Engineer", "Add Intern", "Team Complete"]
         }
-    ]).then(answers => {
-        memberType = answers.command;
+    ]).then(responses => {
+        memberType = responses.command;
 
         switch (memberType) {
             case "Add Engineer":
@@ -93,8 +93,8 @@ function generateEngineer() {
             name: "github",
             message: "Enter engineer's github."
         },
-    ]).then(answers => {
-        let { name, id, email, github } = answers;
+    ]).then(responses => {
+        let { name, id, email, github } = responses;
         let engineer = new Engineer(name, id, email, github);
 
         teamMembers.push(engineer);
@@ -124,11 +124,18 @@ function generateIntern() {
             name: "school",
             message: "Enter intern's school."
         }
-    ]).then(answers => {
-        let { name, id, email, school } = answers;
+    ]).then(responses => {
+        let { name, id, email, school } = responses;
         let intern = new Intern(name, id, email, school);
 
         teamMembers.push(intern);
         generateTeam();
     })
 }
+
+function createTeam() {
+
+    fs.writeFileSync(outputPath, render(teamMembers), 'utf-8');
+}
+
+managerResponse();
