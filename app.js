@@ -101,3 +101,34 @@ function generateEngineer() {
         generateTeam();
     })
 }
+
+function generateIntern() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Enter intern's name."
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "Enter intern's id."
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "Enter intern's email."
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "Enter intern's school."
+        }
+    ]).then(answers => {
+        let { name, id, email, school } = answers;
+        let intern = new Intern(name, id, email, school);
+
+        teamMembers.push(intern);
+        generateTeam();
+    })
+}
