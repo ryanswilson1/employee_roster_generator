@@ -38,7 +38,7 @@ function managerResponse() {
         let { name, id, email, phoneNumber } = responses;
         let manager = new Manager(name, id, email, phoneNumber);
 
-        teamMembers.push(manager);
+        Team.push(manager);
 
         generateTeam();
     })
@@ -97,7 +97,7 @@ function generateEngineer() {
         let { name, id, email, github } = responses;
         let engineer = new Engineer(name, id, email, github);
 
-        teamMembers.push(engineer);
+        Team.push(engineer);
         generateTeam();
     })
 }
@@ -128,14 +128,14 @@ function generateIntern() {
         let { name, id, email, school } = responses;
         let intern = new Intern(name, id, email, school);
 
-        teamMembers.push(intern);
+        Team.push(intern);
         generateTeam();
     })
 }
 
 function createTeam() {
 
-    fs.writeFileSync(outputPath, render(teamMembers), 'utf-8');
+    fs.writeFileSync(outputPath, render(Team), 'utf-8');
 }
 
 managerResponse();
