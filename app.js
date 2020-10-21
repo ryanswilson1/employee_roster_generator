@@ -70,3 +70,34 @@ function generateTeam() {
         }
     })
 }
+
+function generateEngineer() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Enter engineer's name."
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "Enter engineer's id."
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "Enter engineer's email."
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "Enter engineer's github."
+        },
+    ]).then(answers => {
+        let { name, id, email, github } = answers;
+        let engineer = new Engineer(name, id, email, github);
+
+        teamMembers.push(engineer);
+        generateTeam();
+    })
+}
