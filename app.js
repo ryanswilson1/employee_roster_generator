@@ -31,12 +31,12 @@ function managerResponse() {
         },
         {
             type: "input",
-            name: "phoneNumber",
-            message: "Enter manager telephone number."
+            name: "officeNumber",
+            message: "Enter manager office number."
         }
     ]).then(responses => {
-        let { name, id, email, phoneNumber } = responses;
-        let manager = new Manager(name, id, email, phoneNumber);
+        let { name, id, email, officeNumber } = responses;
+        let manager = new Manager(name, id, email, officeNumber);
 
         Team.push(manager);
 
@@ -57,11 +57,11 @@ function generateTeam() {
 
         switch (memberType) {
             case "Add Engineer":
-                getEngineer();
+                generateEngineer();
                 break;
 
             case "Add Intern":
-                getIntern();
+                generateIntern();
                 break;
 
             case "Team Complete":
